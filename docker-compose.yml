@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    user: "node"
     environment:
       - NODE_ENV=production
     env_file:
