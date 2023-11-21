@@ -13,11 +13,19 @@
 	let active = true;
 
 	let chatbox: HTMLDivElement;
+
 	onMount(() => {
-		setInterval(() => {
-			chatbox.scrollTop = chatbox.scrollHeight;
-		}, 100);
+		scrollToBottom();
 	});
+
+	function scrollToBottom() {
+		setTimeout(() => {
+			chatbox.scrollTo({
+				top: chatbox.scrollHeight,
+				behavior: 'smooth'
+			});
+		}, 200);
+	}
 
 	function resetChat() {
 		messages.set([]);
@@ -32,6 +40,7 @@
 			}
 		]);
 		active = false;
+		scrollToBottom();
 
 		const encrypted = CryptoJS.AES.encrypt(message, CryptoJS.enc.Hex.parse(data.derivedKey), {
 			mode: CryptoJS.mode.ECB,
@@ -65,6 +74,7 @@
 					}
 				]);
 				active = true;
+				scrollToBottom();
 			});
 	}
 </script>
