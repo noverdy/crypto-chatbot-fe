@@ -17,8 +17,7 @@ export const load: PageServerLoad = async () => {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
-			public_key: clientPublicKey.toString(16),
-			private_key: clientPrivateKey.toString(16)
+			public_key: clientPublicKey.toString(16)
 		})
 	});
 	const { public_key: pubKeyHex } = await serverKey.json();
